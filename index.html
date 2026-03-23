@@ -1,0 +1,1178 @@
+<!-- Design System
+  Style: Nature Distilled × Warm Local
+  Archetype: Warm Local
+  Fonts: Playfair Display SC (heading) / Karla (body) / Caveat (accent)
+  Palette: primary #C8402B | accent #E3A810 | bg #FAF7F2 | text #2A1F1A
+  Anti-patterns avoided: No emojis as icons (SVG only), no outdated hours, no generic stock-art feel
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flame & Brew | Wood-Fired Pizza · Yakima, WA</title>
+<meta name="description" content="Yakima's favorite wood-fired pizza shop. Fresh ingredients, local love. Dine-in, pickup & delivery at 302 W Nob Hill Blvd.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Karla:wght@300;400;500;600;700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #C8402B;
+  --primary-dark: #A33320;
+  --accent: #E3A810;
+  --accent-dark: #B8880C;
+  --bg: #FAF7F2;
+  --bg-subtle: #F0E8DC;
+  --surface: #FFFFFF;
+  --text: #2A1F1A;
+  --text-muted: #7A6960;
+  --border: rgba(42,31,26,0.12);
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow: 0 8px 32px rgba(42,31,26,0.10);
+  --shadow-lg: 0 20px 60px rgba(42,31,26,0.16);
+  --transition: 200ms ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Karla', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 72px;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+#nav.scrolled {
+  background: rgba(250,247,242,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 24px rgba(42,31,26,0.08);
+}
+.nav-logo {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--surface);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+  flex-shrink: 0;
+}
+#nav.scrolled .nav-logo { color: var(--primary); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  flex-shrink: 0;
+}
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+#nav.scrolled .nav-links a { color: var(--text-muted); }
+.nav-links a:hover { color: var(--accent) !important; }
+.nav-cta {
+  padding: 0.5rem 1.4rem;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 999px;
+  color: var(--surface) !important;
+  font-weight: 700 !important;
+  transition: all var(--transition) !important;
+}
+#nav.scrolled .nav-cta {
+  border-color: var(--primary);
+  color: var(--primary) !important;
+}
+.nav-cta:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--text) !important;
+}
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--surface);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+#nav.scrolled .nav-toggle span { background: var(--text); }
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.nav-overlay.open { display: flex; }
+.nav-overlay a {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 2rem;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+.nav-overlay a:hover { color: var(--primary); }
+.nav-overlay-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 5%;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #2A1F1A center/cover no-repeat;
+  overflow: hidden;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20,10,6,0.55) 0%,
+    rgba(20,10,6,0.45) 50%,
+    rgba(20,10,6,0.72) 100%
+  );
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  padding: 0 2rem;
+}
+.hero-eyebrow {
+  font-family: 'Caveat', cursive;
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  letter-spacing: 0.04em;
+}
+.hero-title {
+  font-family: 'Playfair Display SC', serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 700;
+  color: var(--surface);
+  line-height: 1.1;
+  margin-bottom: 1.4rem;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.4);
+}
+.hero-title em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(255,255,255,0.85);
+  max-width: 540px;
+  margin: 0 auto 2.4rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: var(--primary);
+  color: var(--surface);
+  border: 2px solid var(--primary);
+  border-radius: 999px;
+  font-family: 'Karla', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  min-height: 44px;
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200,64,43,0.35);
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: transparent;
+  color: var(--surface);
+  border: 2px solid rgba(255,255,255,0.65);
+  border-radius: 999px;
+  font-family: 'Karla', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  min-height: 44px;
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.hero-wave {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+/* ─── PROOF BAR ─── */
+.proof-bar {
+  background: var(--primary);
+  padding: 1.1rem 5%;
+  text-align: center;
+}
+.proof-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.proof-stars {
+  display: flex;
+  gap: 3px;
+}
+.proof-stars svg { width: 18px; height: 18px; fill: var(--accent); }
+.proof-text {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--surface);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.proof-sep {
+  width: 1px;
+  height: 20px;
+  background: rgba(255,255,255,0.35);
+}
+
+/* ─── SECTION BASE ─── */
+.section { padding: 6rem 5%; }
+.section-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--primary);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.section-title {
+  font-family: 'Playfair Display SC', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* ─── SERVICES ─── */
+.services { background: var(--bg); }
+.services-header { text-align: center; margin-bottom: 3.5rem; }
+.services-header .section-sub { margin: 0 auto; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.service-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 2rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--primary);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transform: scaleX(0);
+  transition: transform 250ms ease;
+  transform-origin: left;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.service-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--bg-subtle);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.service-icon svg { width: 28px; height: 28px; stroke: var(--primary); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.service-name {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+.service-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ─── ABOUT ─── */
+.about { background: var(--bg-subtle); }
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.about-img-wrap {
+  position: relative;
+}
+.about-img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+.about-img-placeholder {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  background: #C8B8AC center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+.about-badge {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  background: var(--primary);
+  color: var(--surface);
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 4px solid var(--surface);
+}
+.about-badge-num {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.about-badge-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+.about-content {}
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+.stat-item {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--border);
+}
+.stat-num {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.stat-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.trust-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.trust-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+.trust-list svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  stroke: var(--primary);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-top: 1px;
+}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials { background: var(--bg); }
+.testimonials-header { text-align: center; margin-bottom: 3rem; }
+.testimonials-header .section-sub { margin: 0 auto; }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.testi-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+.testi-card:hover { transform: translateY(-4px); }
+.testi-stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+.testi-stars svg { width: 16px; height: 16px; fill: var(--accent); }
+.testi-quote {
+  font-size: 0.97rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
+  font-style: italic;
+}
+.testi-quote::before { content: '\201C'; font-family: 'Playfair Display SC', serif; font-size: 1.6rem; color: var(--primary); line-height: 0; vertical-align: -0.6rem; margin-right: 4px; }
+.testi-author { display: flex; align-items: center; gap: 0.75rem; }
+.testi-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display SC', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.testi-name { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+.testi-role { font-size: 0.78rem; color: var(--text-muted); }
+
+/* ─── CTA BANNER ─── */
+.cta-banner {
+  background: var(--primary);
+  padding: 5rem 5%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+.cta-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -120px; left: -60px;
+  width: 400px; height: 400px;
+  background: rgba(0,0,0,0.06);
+  border-radius: 50%;
+}
+.cta-banner .section-label { color: var(--accent); }
+.cta-banner-title {
+  font-family: 'Playfair Display SC', serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: var(--surface);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.cta-banner-sub {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2.4rem;
+  background: var(--accent);
+  color: var(--text);
+  border: none;
+  border-radius: 999px;
+  font-family: 'Karla', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+  z-index: 1;
+  min-height: 44px;
+}
+.btn-cta:hover {
+  background: #F0B820;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+
+/* ─── CONTACT ─── */
+.contact { background: var(--bg-subtle); }
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.contact-info {}
+.phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Playfair Display SC', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  margin: 1.2rem 0;
+  transition: color var(--transition);
+}
+.phone-link:hover { color: var(--primary-dark); }
+.phone-link svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 2; }
+.hours-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.93rem;
+}
+.hours-day { font-weight: 600; color: var(--text); }
+.hours-time { color: var(--text-muted); }
+.contact-form { background: var(--surface); border-radius: var(--radius-lg); padding: 2.5rem; border: 1px solid var(--border); box-shadow: var(--shadow); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { margin-bottom: 1.1rem; }
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Karla', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  min-height: 44px;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(200,64,43,0.1);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary);
+  color: var(--surface);
+  border: none;
+  border-radius: 999px;
+  font-family: 'Karla', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition);
+  min-height: 44px;
+}
+.form-submit:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200,64,43,0.3);
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: #1A0F0A;
+  padding: 3rem 5%;
+  color: rgba(255,255,255,0.55);
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.footer-logo {
+  font-family: 'Playfair Display SC', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--surface);
+  text-decoration: none;
+}
+.footer-links {
+  display: flex;
+  gap: 1.8rem;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-copy { font-size: 0.82rem; }
+
+/* ─── ANIMATIONS ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+.fade-up:nth-child(5) { transition-delay: 0.4s; }
+.fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { opacity: 1; transform: none; transition: none; }
+  .btn-primary:hover, .btn-outline:hover, .btn-cta:hover, .form-submit:hover { transform: none; }
+  * { animation: none !important; transition-duration: 0ms !important; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .about-img-placeholder { aspect-ratio: 16/9; }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  #nav { padding: 0 1.2rem; }
+  .section { padding: 4rem 1.2rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { flex-wrap: wrap; justify-content: center; }
+  .hero-title { font-size: clamp(2rem, 8vw, 3.2rem); }
+  .about-badge { bottom: -1rem; right: -0.5rem; width: 90px; height: 90px; }
+  .about-badge-num { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<header id="nav">
+  <a href="#" class="nav-logo">Flame &amp; Brew</a>
+  <ul class="nav-links">
+    <li><a href="#services">Menu</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Open menu" onclick="document.querySelector('.nav-overlay').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="nav-overlay" role="dialog" aria-modal="true">
+  <button class="nav-overlay-close" onclick="document.querySelector('.nav-overlay').classList.remove('open')">&times;</button>
+  <a href="#services" onclick="document.querySelector('.nav-overlay').classList.remove('open')">Menu</a>
+  <a href="#about" onclick="document.querySelector('.nav-overlay').classList.remove('open')">Our Story</a>
+  <a href="#reviews" onclick="document.querySelector('.nav-overlay').classList.remove('open')">Reviews</a>
+  <a href="#contact" onclick="document.querySelector('.nav-overlay').classList.remove('open')">Order Now</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Wood-Fired &amp; Locally Loved</p>
+    <h1 class="hero-title">Where Every Pizza<br>Tells a <em>Story</em></h1>
+    <p class="hero-sub">Handcrafted wood-fired pizza made from scratch, right here in Yakima. Real fire. Real flavor. Real local.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Order Online
+      </a>
+      <a href="#services" class="btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        View Menu
+      </a>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0 80L60 68C120 56 240 32 360 24C480 16 600 24 720 32C840 40 960 48 1080 44C1200 40 1320 24 1380 16L1440 8V80H1380C1320 80 1200 80 1080 80C960 80 840 80 720 80C600 80 480 80 360 80C240 80 120 80 60 80H0Z" fill="#FAF7F2"/>
+  </svg>
+</section>
+
+<!-- ─── PROOF BAR ─── -->
+<div class="proof-bar">
+  <div class="proof-inner">
+    <div class="proof-stars">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    </div>
+    <span class="proof-text">200+ Five-Star Reviews on Google</span>
+    <div class="proof-sep"></div>
+    <span class="proof-text">Family-Owned &amp; Locally Loved Since 2018</span>
+    <div class="proof-sep"></div>
+    <span class="proof-text">Pickup · Delivery · Dine-In</span>
+  </div>
+</div>
+
+<!-- ─── SERVICES ─── -->
+<section class="section services" id="services">
+  <div class="services-header fade-up">
+    <span class="section-label">What We're Firing Up</span>
+    <h2 class="section-title">From Our Oven to Your Table</h2>
+    <p class="section-sub">Everything is made fresh, every day — from dough to sauce, we don't cut corners and we don't use a microwave.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M8.5 8.5c.8-1 2.1-1.5 3.5-1.5 2.8 0 5 2.2 5 5s-2.2 5-5 5-5-2.2-5-5c0-.9.2-1.7.6-2.4"/></svg>
+      </div>
+      <h3 class="service-name">Wood-Fired Pizza</h3>
+      <p class="service-desc">Our 10" personal and 16" large pizzas are fired in a real wood-burning oven for that authentic char, crisp crust, and smoky depth you can't fake.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M6 2v6"/><path d="M18 2v6"/><path d="M6 8h12"/><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8"/><path d="M19 12v8"/><path d="M3 20h18"/></svg>
+      </div>
+      <h3 class="service-name">Crispy Wings</h3>
+      <p class="service-desc">Tossed in your choice of sauce, our wings come out golden and never soggy. The perfect starter — or the whole meal, no judgment.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+      </div>
+      <h3 class="service-name">Oven-Baked Sandwiches</h3>
+      <p class="service-desc">6-inch subs loaded with quality ingredients and finished in the oven for a perfectly melted, toasty result every time.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3 class="service-name">Fresh Salads</h3>
+      <p class="service-desc">Crisp, fresh greens with house-made dressings. Great on their own, even better alongside a slice or two.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <h3 class="service-name">Starters &amp; Desserts</h3>
+      <p class="service-desc">From shareable appetizers to sweet finishes — round out your meal with house favorites that keep people coming back.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <h3 class="service-name">Pickup &amp; Delivery</h3>
+      <p class="service-desc">Order online for fast pickup at 302 W Nob Hill Blvd, or get it delivered right to your door. Lunch specials Mon–Thurs, 11am–2pm.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="section about" id="about">
+  <div class="about-inner">
+    <div class="about-img-wrap fade-up">
+      <div class="about-img-placeholder" id="aboutImg"></div>
+      <div class="about-badge">
+        <span class="about-badge-num">7+</span>
+        <span class="about-badge-text">Years of Fire</span>
+      </div>
+    </div>
+    <div class="about-content fade-up">
+      <span class="section-label">Our Story</span>
+      <h2 class="section-title">Yakima's Wood-Fired Neighborhood Spot</h2>
+      <p class="section-sub">We started Flame &amp; Brew with one simple idea: Yakima deserves a pizza place that actually cares — about the dough, the toppings, and the people walking through the door.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-num" data-target="200">0</div>
+          <div class="stat-label">5-Star Reviews</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="50">0</div>
+          <div class="stat-label">Menu Items</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="7">0</div>
+          <div class="stat-label">Years Serving Yakima</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="1">0</div>
+          <div class="stat-label">Wood-Fired Oven</div>
+        </div>
+      </div>
+      <ul class="trust-list">
+        <li>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Locally owned &amp; family operated — not a chain, never will be
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Dough made fresh daily, never frozen
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Real wood-fire flavor you can taste in every bite
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          Online ordering for pickup &amp; delivery — always fast
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="section testimonials" id="reviews">
+  <div class="testimonials-header fade-up">
+    <span class="section-label">What Yakima Says</span>
+    <h2 class="section-title">Real People, Real Pizza Love</h2>
+    <p class="section-sub">Don't take our word for it — here's what our regulars have to say.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card fade-up">
+      <div class="testi-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-quote">That wood-fired crust is genuinely different from anything else in Yakima. We drive across town specifically for the pepperoni — the char on the bottom is perfect.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sarah K.</div>
+          <div class="testi-role">Nob Hill Neighbor · Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="testi-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-quote">Our whole team does lunch here every Thursday. The sandwiches are underrated — but honestly the wings alone are worth the trip. Friendly staff every single time.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">D</div>
+        <div>
+          <div class="testi-name">Derek M.</div>
+          <div class="testi-role">West Valley · Google Review</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="testi-stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <p class="testi-quote">I ordered for pickup on a Friday night and it was ready in 20 minutes, still piping hot. The crust had that smoky smell that hits you when you open the box. Seriously good.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">L</div>
+        <div>
+          <div class="testi-name">Lisa T.</div>
+          <div class="testi-role">Selah · Google Review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BANNER ─── -->
+<section class="cta-banner">
+  <span class="section-label">Serving Yakima Valley</span>
+  <h2 class="cta-banner-title fade-up">Proudly Serving Yakima<br>&amp; Surrounding Areas</h2>
+  <p class="cta-banner-sub fade-up">Pickup, delivery, or walk in — we're open 7 days a week and the oven is always hot.</p>
+  <a href="#contact" class="btn-cta fade-up">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    Order Now
+  </a>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="section contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info fade-up">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="section-title">Come Hungry,<br>Leave Happy</h2>
+      <p class="section-sub">Ready to order or have a question? Give us a call or fill out the form.</p>
+      <a href="tel:+15098957017" class="phone-link">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.14h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 6.1 6.1l1.12-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (509) 895-7017
+      </a>
+      <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:0.4rem;">302 W Nob Hill Blvd, Yakima, WA 98902</p>
+      <div class="hours-grid">
+        <span class="hours-day">Mon – Thurs</span><span class="hours-time">11:00 AM – 9:00 PM</span>
+        <span class="hours-day">Fri – Sat</span><span class="hours-time">11:00 AM – 10:00 PM</span>
+        <span class="hours-day">Sunday</span><span class="hours-time">11:00 AM – 8:00 PM</span>
+      </div>
+    </div>
+    <div class="contact-form fade-up">
+      <h3 style="font-family:'Playfair Display SC',serif;font-size:1.2rem;margin-bottom:1.5rem;color:var(--text);">Send Us a Message</h3>
+      <form onsubmit="event.preventDefault(); this.innerHTML='<p style=\'text-align:center;padding:2rem;font-family:Playfair Display SC,serif;color:var(--primary)\'>Thanks! We\'ll be in touch soon.</p>'">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Jane" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="jane@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="(509) 000-0000">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Catering inquiry, question, or just want to say hi..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">Flame &amp; Brew</a>
+    <ul class="footer-links">
+      <li><a href="#services">Menu</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">&copy; 2026 Flame &amp; Brew · Yakima, WA · 302 W Nob Hill Blvd</p>
+  </div>
+</footer>
+
+<script>
+// ─── NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// ─── HERO IMAGE via Unsplash
+fetch('https://api.unsplash.com/photos/random?query=wood+fired+pizza+restaurant&orientation=landscape&client_id=X40-Lk7G_Q6Zk-Cn4jXIDNbMzfHlIfj7fdhl-J-5b58')
+  .then(r => r.json())
+  .then(d => {
+    if (d && d.urls) {
+      document.querySelector('.hero').style.backgroundImage = `url(${d.urls.full || d.urls.regular})`;
+    }
+  })
+  .catch(() => {
+    document.querySelector('.hero').style.backgroundImage =
+      'url(https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1600&auto=format&fit=crop)';
+  });
+
+// ─── ABOUT IMAGE via Unsplash
+fetch('https://api.unsplash.com/photos/random?query=pizza+kitchen+chef&orientation=landscape&client_id=X40-Lk7G_Q6Zk-Cn4jXIDNbMzfHlIfj7fdhl-J-5b58')
+  .then(r => r.json())
+  .then(d => {
+    if (d && d.urls) {
+      const el = document.getElementById('aboutImg');
+      if (el) el.style.backgroundImage = `url(${d.urls.regular || d.urls.full})`;
+    }
+  })
+  .catch(() => {
+    const el = document.getElementById('aboutImg');
+    if (el) el.style.backgroundImage =
+      'url(https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=900&auto=format&fit=crop)';
+  });
+
+// ─── INTERSECTION OBSERVER — fade-up
+const fadeEls = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+fadeEls.forEach(el => observer.observe(el));
+
+// ─── COUNT-UP STATS
+const statEls = document.querySelectorAll('.stat-num[data-target]');
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || (target >= 100 ? '+' : target === 1 ? '' : '+');
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    countObserver.unobserve(el);
+  });
+}, { threshold: 0.5 });
+statEls.forEach(el => countObserver.observe(el));
+</script>
+
+</body>
+</html>
