@@ -799,19 +799,61 @@ body {
   .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
 }
 @media (max-width: 768px) {
+  /* Nav */
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
   #nav { padding: 0 1.2rem; }
-  .section { padding: 4rem 1.2rem; }
+
+  /* Layout */
+  .section { padding: 3.5rem 1.2rem; }
   .services-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: repeat(2, 1fr); }
   .form-row { grid-template-columns: 1fr; }
+
+  /* Hero */
+  .hero { min-height: 100svh; padding: 0 1.2rem; }
+  .hero-content { padding: 0; }
+  .hero-title { font-size: clamp(2rem, 9vw, 2.8rem); }
+  .hero-sub { font-size: 1rem; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-outline { width: 100%; max-width: 300px; justify-content: center; }
+
+  /* Proof bar */
+  .proof-bar { padding: 1rem 1.2rem; }
+  .proof-sep { display: none; }
+  .proof-text { font-size: 0.8rem; }
+
+  /* About badge — prevent horizontal overflow */
+  .about-img-wrap { overflow: visible; padding-bottom: 2rem; }
+  .about-badge { bottom: 0; right: 0.5rem; width: 88px; height: 88px; }
+  .about-badge-num { font-size: 1.35rem; }
+  .about-badge-text { font-size: 0.6rem; }
+
+  /* CTA banner */
+  .cta-banner { padding: 3.5rem 1.2rem; }
+  .cta-banner-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+  /* Contact */
+  .phone-link { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+
+  /* Footer */
+  .footer { padding: 2.5rem 1.2rem; }
   .footer-inner { flex-direction: column; text-align: center; }
-  .footer-links { flex-wrap: wrap; justify-content: center; }
-  .hero-title { font-size: clamp(2rem, 8vw, 3.2rem); }
-  .about-badge { bottom: -1rem; right: -0.5rem; width: 90px; height: 90px; }
-  .about-badge-num { font-size: 1.4rem; }
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+  /* Stats */
+  .stat-num { font-size: 1.8rem; }
+
+  /* Testi cards — full width tap targets */
+  .testi-card { padding: 1.5rem; }
+}
+
+@media (max-width: 400px) {
+  .about-stats { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .hero-eyebrow { font-size: 1.2rem; }
 }
 </style>
 </head>
